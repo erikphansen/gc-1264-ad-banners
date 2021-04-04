@@ -2,15 +2,26 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const sizes = [
-  // {
-  //   width: 728,
-  //   height: 90,
-  // },
+  {
+    width: 728,
+    height: 90,
+  },
   {
     width: 300,
     height: 250,
   },
 ]
+
+// an array of HtmlWebpackPlugins to spread into the config plugins array
+const htmlPlugins = sizes.map((adSize) => {
+  return new HtmlWebpackPlugin({
+    title: `${adSize.width}x${adSize.height}`,
+    template: `src/index_${adSize.width}x${adSize.height}.html`,
+    filename: `${adSize.width}x${adSize.height}.html`,
+    inject: false,
+    cache: false,
+  })
+})
 
 module.exports = {
   mode: 'development',
@@ -21,16 +32,7 @@ module.exports = {
     ] = `./src/${adSize.width}x${adSize.height}.js`
     return acc
   }, {}),
-  // make a new html page for each ad size
-  plugins: sizes.map((adSize) => {
-    return new HtmlWebpackPlugin({
-      title: `${adSize.width}x${adSize.height}`,
-      template: `src/index_${adSize.width}x${adSize.height}.html`,
-      filename: `${adSize.width}x${adSize.height}.html`,
-      inject: false,
-      cache: false,
-    })
-  }),
+  plugins: [...htmlPlugins],
   output: {
     // makes a new bundle for each entry
     filename: '[name].bundle.js',
@@ -41,6 +43,16 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        exclude: /(node_modules)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
+        },
+      },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
