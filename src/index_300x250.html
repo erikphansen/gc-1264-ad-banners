@@ -7,22 +7,19 @@
     <script type="text/javascript">
       var clickTag = "http://www.google.com";
     </script>
-    <style type="text/css" media="screen">
-      html, body, div,
-      a, img {
-        margin: 0;
-        padding: 0;
-        border: 0;
-        font-size: 100%;
-        font: inherit;
-        vertical-align: baseline;
-      }
-    </style>
   </head>
   <body class="loading">
-	<a href="javascript:window.open(window.clickTag)">
-    the ad goes here
-  </a>
+    <a href="javascript:window.open(window.clickTag)">
+      <div id="ad">
+        <div class="bars">
+          <div class="bar bar-cyan"></div>
+          <div class="bar bar-green"></div>
+          <div class="bar bar-yellow"></div>
+          <div class="bar bar-blue"></div>
+          <div class="bar bar-red"></div>
+        </div>
+      </div>
+    </a>
     <script type="text/javascript">
       <%= compilation.assets['300x250.bundle.js'].source() %>
     </script>

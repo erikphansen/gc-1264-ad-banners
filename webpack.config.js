@@ -24,7 +24,7 @@ const htmlPlugins = sizes.map((adSize) => {
 })
 
 module.exports = {
-  mode: 'development',
+  // mode: 'development',
   // make a new js bundle for each ad size
   entry: sizes.reduce((acc, adSize) => {
     acc[
@@ -52,6 +52,17 @@ module.exports = {
             presets: ['@babel/preset-env'],
           },
         },
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          // Creates `style` nodes from JS strings
+          'style-loader',
+          // Translates CSS into CommonJS
+          'css-loader',
+          // Compiles Sass to CSS
+          'sass-loader',
+        ],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,

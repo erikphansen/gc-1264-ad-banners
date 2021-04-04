@@ -1,0 +1,41 @@
+$cyan: #66ccff;
+$green: #99cc66;
+$yellow: #ffcc66;
+$blue: #8da7d6;
+$red: #be7b69;
+
+
+html, body, div, a, img {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.bars {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.bar {
+  height: 20%;
+
+  &-cyan {
+    background-color: $cyan;
+  }
+  &-green {
+    background-color: $green;
+  }
+  &-yellow {
+    background-color: $yellow;
+  }
+  &-blue {
+    background-color: $blue;
+  }
+  &-red {
+    background-color: $red;
+  }
+}

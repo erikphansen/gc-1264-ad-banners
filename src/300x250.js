@@ -1,4 +1,1 @@
-const el = document.createElement('div')
-el.innerHTML = '300x250'
-
-document.body.appendChild(el)
+import './sass/300x250.scss'
