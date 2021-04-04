@@ -42,7 +42,7 @@ ad.appendChild(sketchbook)
 const tl = gsap.timeline()
 
 const inDur = 0.35
-const outDur = 0.5
+const outDur = 0.55
 const ease = 'none'
 
 tl.from(sketchbook, { duration: 1, y: 250 })
@@ -60,3 +60,9 @@ tl.to(sketchbookFrames[3], { duration: outDur, alpha: 0, ease })
 
 tl.to(sketchbookFrames[5], { duration: inDur, alpha: 1, ease }, '<')
 tl.to(sketchbookFrames[4], { duration: outDur, alpha: 0, ease })
+
+tl.set(sketchbook, { y: 22 }, '>.5')
+tl.set(sketchbook, { y: 72 }, '>.5')
+tl.set(sketchbook, { y: 122 }, '>.5')
+tl.set(sketchbook, { y: 172 }, '>.5')
+tl.set(sketchbook, { y: 222 }, '>.5')
