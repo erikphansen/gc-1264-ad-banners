@@ -66,6 +66,7 @@ ad.appendChild(text5)
 
 const inDur = 0.5
 const ease = 'none'
+const fadeOutSpeed = 1
 
 // draw in the sketchbook
 tl.from(sketchbook, { duration: 1, y: 250 })
@@ -75,31 +76,32 @@ tl.to(sketchbookFrames[3], { duration: inDur, alpha: 1, ease })
 tl.to(sketchbookFrames[4], { duration: inDur, alpha: 1, ease })
 tl.to(sketchbookFrames[5], { duration: inDur, alpha: 1, ease })
 
-// drop the sketchbook
-tl.set(sketchbook, { y: 22 }, '>.5')
-// flash in the line1
-tl.set(text1, { alpha: 1 })
-tl.to(text1, { alpha: 0.5, duration: inDur })
+// now that the sketchbook has drawn in, set up markers for dropping the
+// sketchbook out of view
+tl.addLabel('drop1')
+tl.addLabel('drop2', '>.5')
+tl.addLabel('drop3', '>1')
+tl.addLabel('drop4', '>1.5')
+tl.addLabel('drop5', '>2')
 
-// drop the sketchbook
-tl.set(sketchbook, { y: 72 }, '>')
-// flash in the line2
-tl.set(text2, { alpha: 1 }, '<')
-tl.to(text2, { alpha: 0.5, duration: inDur })
+tl.set(sketchbook, { y: 22 }, 'drop1')
+tl.set(text1, { alpha: 1 }, 'drop1')
+tl.to(text1, { alpha: 0.5, duration: fadeOutSpeed }, 'drop1')
 
-// drop the sketchbook
-tl.set(sketchbook, { y: 122 }, '>')
-// flash in the line3
-tl.set(text3, { alpha: 1 }, '<')
-tl.to(text3, { alpha: 0.5, duration: inDur })
+tl.set(sketchbook, { y: 72 }, 'drop2')
+tl.set(text2, { alpha: 1 }, 'drop2')
+tl.to(text2, { alpha: 0.5, duration: fadeOutSpeed }, 'drop2')
 
-// drop the sketchbook
-tl.set(sketchbook, { y: 172 }, '>')
-// flash in the line4
-tl.set(text4, { alpha: 1 }, '<')
-tl.to(text4, { alpha: 0.5, duration: inDur })
+tl.set(sketchbook, { y: 122 }, 'drop3')
+tl.set(text3, { alpha: 1 }, 'drop3')
+tl.to(text3, { alpha: 0.5, duration: fadeOutSpeed }, 'drop3')
 
-tl.set(sketchbook, { y: 222 }, '>')
-// flash in the line5
-tl.set(text5, { alpha: 1 }, '<')
-tl.to(text5, { alpha: 0.5, duration: inDur })
+tl.set(sketchbook, { y: 172 }, 'drop4')
+tl.set(text4, { alpha: 1 }, 'drop4')
+tl.to(text4, { alpha: 0.5, duration: fadeOutSpeed }, 'drop4')
+
+tl.set(sketchbook, { y: 250 }, 'drop5')
+tl.set(text5, { alpha: 1 }, 'drop5')
+tl.to(text5, { alpha: 0.5, duration: fadeOutSpeed }, 'drop5')
+
+tl.to([text1, text2, text3, text4, text5], { alpha: 0, duration: fadeOutSpeed })
