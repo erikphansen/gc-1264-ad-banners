@@ -16,13 +16,24 @@ import line6Png from './images/6-discover-yourself.png'
 import logoPng from './images/logo.png'
 import buttonPng from './images/button.png'
 
-const slideUpSpeed = 1
+// how many times has it repeated?
+let thisPlay = 0
+// how many times should it repeat?
+const repeat = 2
+const slideUpSpeed = 0.75
 const sketchDrawInSpeed = 0.5
 const sketchDrawInEase = 'none'
-const textFadeOutSpeed = 1
+const textFadeOutSpeed = 0.75
 
 const ad = document.querySelector('#ad')
-const tl = gsap.timeline({ repeat: 1 })
+const tl = gsap.timeline({
+  repeat,
+  onRepeat: () => {
+    thisPlay++
+  },
+})
+
+tl.timeScale(1)
 
 function makeSketchbook() {
   const sketchbookImages = [
@@ -139,5 +150,13 @@ tl.to([text1, text2, text3, text4, text5], {
 
 // flash in the logo, final text, and button
 tl.set([logo, text6, button], { alpha: 1 })
-// fade out
+
+// this callback will stop playback here if we are on the last loop
+tl.call(function () {
+  if (thisPlay === repeat) {
+    tl.pause()
+  }
+})
+
+// fade out if this isn't the final run of the animation
 tl.to([logo, text6, button], { alpha: 0 }, '+=3')
