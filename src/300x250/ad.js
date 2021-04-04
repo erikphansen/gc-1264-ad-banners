@@ -16,6 +16,11 @@ import line6Png from './images/6-discover-yourself.png'
 import logoPng from './images/logo.png'
 import buttonPng from './images/button.png'
 
+const slideUpSpeed = 1
+const sketchDrawInSpeed = 0.5
+const sketchDrawInEase = 'none'
+const textFadeOutSpeed = 1
+
 const ad = document.querySelector('#ad')
 const tl = gsap.timeline({ repeat: 1 })
 
@@ -41,10 +46,7 @@ function makeSketchbook() {
 }
 
 const [sketchbook, sketchbookFrames] = makeSketchbook()
-sketchbookFrames.forEach((frame) => {
-  gsap.set(frame, { alpha: 0 })
-})
-gsap.set(sketchbookFrames[0], { alpha: 1 })
+// gsap.set(sketchbookFrames[0], { alpha: 1 })
 
 ad.appendChild(sketchbook)
 
@@ -73,18 +75,34 @@ const button = new Image()
 button.src = buttonPng
 ad.appendChild(button)
 
-const slideUpSpeed = 0.75
-const sketchDrawInSpeed = 0.35
-const ease = 'none'
-const fadeOutSpeed = 1
-
 // draw in the sketchbook
+tl.set(sketchbookFrames[0], { alpha: 1 })
 tl.from(sketchbook, { duration: slideUpSpeed, y: 250 })
-tl.to(sketchbookFrames[1], { duration: sketchDrawInSpeed, alpha: 1, ease })
-tl.to(sketchbookFrames[2], { duration: sketchDrawInSpeed, alpha: 1, ease })
-tl.to(sketchbookFrames[3], { duration: sketchDrawInSpeed, alpha: 1, ease })
-tl.to(sketchbookFrames[4], { duration: sketchDrawInSpeed, alpha: 1, ease })
-tl.to(sketchbookFrames[5], { duration: sketchDrawInSpeed, alpha: 1, ease })
+tl.to(sketchbookFrames[1], {
+  duration: sketchDrawInSpeed,
+  alpha: 1,
+  ease: sketchDrawInEase,
+})
+tl.to(sketchbookFrames[2], {
+  duration: sketchDrawInSpeed,
+  alpha: 1,
+  ease: sketchDrawInEase,
+})
+tl.to(sketchbookFrames[3], {
+  duration: sketchDrawInSpeed,
+  alpha: 1,
+  ease: sketchDrawInEase,
+})
+tl.to(sketchbookFrames[4], {
+  duration: sketchDrawInSpeed,
+  alpha: 1,
+  ease: sketchDrawInEase,
+})
+tl.to(sketchbookFrames[5], {
+  duration: sketchDrawInSpeed,
+  alpha: 1,
+  ease: sketchDrawInEase,
+})
 
 // now that the sketchbook has drawn in, set up markers for dropping the
 // sketchbook out of view
@@ -96,26 +114,30 @@ tl.addLabel('drop5', '>2.5')
 
 tl.set(sketchbook, { y: 22 }, 'drop1')
 tl.set(text1, { alpha: 1 }, 'drop1')
-tl.to(text1, { alpha: 0.5, duration: fadeOutSpeed }, 'drop1')
+tl.to(text1, { alpha: 0.5, duration: textFadeOutSpeed }, 'drop1')
 
 tl.set(sketchbook, { y: 72 }, 'drop2')
 tl.set(text2, { alpha: 1 }, 'drop2')
-tl.to(text2, { alpha: 0.5, duration: fadeOutSpeed }, 'drop2')
+tl.to(text2, { alpha: 0.5, duration: textFadeOutSpeed }, 'drop2')
 
 tl.set(sketchbook, { y: 122 }, 'drop3')
 tl.set(text3, { alpha: 1 }, 'drop3')
-tl.to(text3, { alpha: 0.5, duration: fadeOutSpeed }, 'drop3')
+tl.to(text3, { alpha: 0.5, duration: textFadeOutSpeed }, 'drop3')
 
 tl.set(sketchbook, { y: 172 }, 'drop4')
 tl.set(text4, { alpha: 1 }, 'drop4')
-tl.to(text4, { alpha: 0.5, duration: fadeOutSpeed }, 'drop4')
+tl.to(text4, { alpha: 0.5, duration: textFadeOutSpeed }, 'drop4')
 
 tl.set(sketchbook, { y: 250 }, 'drop5')
 tl.set(text5, { alpha: 1 }, 'drop5')
-tl.to(text5, { alpha: 0.5, duration: fadeOutSpeed }, 'drop5')
+tl.to(text5, { alpha: 0.5, duration: textFadeOutSpeed }, 'drop5')
 
-tl.to([text1, text2, text3, text4, text5], { alpha: 0, duration: fadeOutSpeed })
+tl.to([text1, text2, text3, text4, text5], {
+  alpha: 0,
+  duration: textFadeOutSpeed,
+})
 
 // flash in the logo, final text, and button
 tl.set([logo, text6, button], { alpha: 1 })
+// fade out
 tl.to([logo, text6, button], { alpha: 0 }, '+=3')
