@@ -17,17 +17,17 @@ import logo from './images/logo.png'
 import button from './images/button.png'
 
 const ad = document.querySelector('#ad')
-
-const sketchbookImages = [
-  sketchbook1,
-  sketchbook2,
-  sketchbook3,
-  sketchbook4,
-  sketchbook5,
-  sketchbook6,
-]
+const tl = gsap.timeline()
 
 function makeSketchbook() {
+  const sketchbookImages = [
+    sketchbook1,
+    sketchbook2,
+    sketchbook3,
+    sketchbook4,
+    sketchbook5,
+    sketchbook6,
+  ]
   const book = document.createElement('div')
   book.classList.add('sketchbook')
   const frames = []
@@ -45,9 +45,24 @@ sketchbookFrames.forEach((frame) => {
   gsap.set(frame, { alpha: 0 })
 })
 gsap.set(sketchbookFrames[0], { alpha: 1 })
+
 ad.appendChild(sketchbook)
 
-const tl = gsap.timeline()
+const text1 = new Image()
+text1.src = line1
+ad.appendChild(text1)
+const text2 = new Image()
+text2.src = line2
+ad.appendChild(text2)
+const text3 = new Image()
+text3.src = line3
+ad.appendChild(text3)
+const text4 = new Image()
+text4.src = line4
+ad.appendChild(text4)
+const text5 = new Image()
+text5.src = line5
+ad.appendChild(text5)
 
 const inDur = 0.5
 const ease = 'none'
@@ -60,9 +75,31 @@ tl.to(sketchbookFrames[3], { duration: inDur, alpha: 1, ease })
 tl.to(sketchbookFrames[4], { duration: inDur, alpha: 1, ease })
 tl.to(sketchbookFrames[5], { duration: inDur, alpha: 1, ease })
 
-// drop the sketchbook out of the frame
+// drop the sketchbook
 tl.set(sketchbook, { y: 22 }, '>.5')
-tl.set(sketchbook, { y: 72 }, '>.5')
-tl.set(sketchbook, { y: 122 }, '>.5')
-tl.set(sketchbook, { y: 172 }, '>.5')
-tl.set(sketchbook, { y: 222 }, '>.5')
+// flash in the line1
+tl.set(text1, { alpha: 1 })
+tl.to(text1, { alpha: 0.5, duration: inDur })
+
+// drop the sketchbook
+tl.set(sketchbook, { y: 72 }, '>')
+// flash in the line2
+tl.set(text2, { alpha: 1 }, '<')
+tl.to(text2, { alpha: 0.5, duration: inDur })
+
+// drop the sketchbook
+tl.set(sketchbook, { y: 122 }, '>')
+// flash in the line3
+tl.set(text3, { alpha: 1 }, '<')
+tl.to(text3, { alpha: 0.5, duration: inDur })
+
+// drop the sketchbook
+tl.set(sketchbook, { y: 172 }, '>')
+// flash in the line4
+tl.set(text4, { alpha: 1 }, '<')
+tl.to(text4, { alpha: 0.5, duration: inDur })
+
+tl.set(sketchbook, { y: 222 }, '>')
+// flash in the line5
+tl.set(text5, { alpha: 1 }, '<')
+tl.to(text5, { alpha: 0.5, duration: inDur })

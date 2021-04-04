@@ -4,7 +4,6 @@ $yellow: #ffcc66;
 $blue: #8da7d6;
 $red: #be7b69;
 
-
 html, body, div, a, img {
   margin: 0;
   padding: 0;
@@ -37,5 +36,25 @@ html, body, div, a, img {
   }
   &-red {
     background-color: $red;
+  }
+}
+
+#ad {
+  position:relative;
+  overflow:hidden;
+
+  & img {
+    position: absolute;
+    top: 0;
+    opacity: 0;
+  }
+
+  .sketchbook {
+    position: absolute;
+    top: 0;
+
+    & img {
+      position: absolute;
+    }
   }
 }
