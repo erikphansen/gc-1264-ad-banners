@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="ad.size" content="width=160,height=600">
+    <script type="text/javascript">
+      var clickTag = "http://www.google.com";
+    </script>
+  </head>
+  <body class="loading">
+    <a href="javascript:window.open(window.clickTag)">
+      <div id="ad">
+        <div class="bars">
+          <div class="bar bar-cyan"></div>
+          <div class="bar bar-green"></div>
+          <div class="bar bar-yellow"></div>
+          <div class="bar bar-blue"></div>
+          <div class="bar bar-red"></div>
+        </div>
+      </div>
+    </a>
+    <script type="text/javascript">
+      <%= compilation.assets['main.bundle.js'].source() %>
+    </script>
+  </body>
+</html>
