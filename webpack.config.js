@@ -1,30 +1,40 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+const sizes = [
+  // {
+  //   width: 728,
+  //   height: 90,
+  // },
+  {
+    width: 300,
+    height: 250,
+  },
+]
+
 module.exports = {
   mode: 'development',
-  entry: {
-    '728x90': './src/728x90.js',
-    '300x250': './src/300x250.js',
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: '728x90',
-      template: 'src/index_728x90.html',
-      filename: '728x90.html',
+  // make a new js bundle for each ad size
+  entry: sizes.reduce((acc, adSize) => {
+    acc[
+      `${adSize.width}x${adSize.height}`
+    ] = `./src/${adSize.width}x${adSize.height}.js`
+    return acc
+  }, {}),
+  // make a new html page for each ad size
+  plugins: sizes.map((adSize) => {
+    return new HtmlWebpackPlugin({
+      title: `${adSize.width}x${adSize.height}`,
+      template: `src/index_${adSize.width}x${adSize.height}.html`,
+      filename: `${adSize.width}x${adSize.height}.html`,
       inject: false,
       cache: false,
-    }),
-    new HtmlWebpackPlugin({
-      title: '300x250',
-      template: 'src/index_300x250.html',
-      filename: '300x250.html',
-      inject: false,
-      cache: false,
-    }),
-  ],
+    })
+  }),
   output: {
+    // makes a new bundle for each entry
     filename: '[name].bundle.js',
+    // path of the output file
     path: path.resolve(__dirname, 'dist'),
     clean: true,
     publicPath: '',
