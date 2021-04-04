@@ -4,14 +4,21 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   mode: 'development',
   entry: {
-    index: './src/index.js',
-    print: './src/print.js',
+    '728x90': './src/728x90.js',
+    '300x250': './src/300x250.js',
   },
   plugins: [
     new HtmlWebpackPlugin({
       title: '728x90',
-      template: 'src/index_720x90.html',
-      filename: 'index_720x90.html',
+      template: 'src/index_728x90.html',
+      filename: '728x90.html',
+      inject: false,
+      cache: false,
+    }),
+    new HtmlWebpackPlugin({
+      title: '300x250',
+      template: 'src/index_300x250.html',
+      filename: '300x250.html',
       inject: false,
       cache: false,
     }),
@@ -20,5 +27,14 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
+    publicPath: '',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
+    ],
   },
 }

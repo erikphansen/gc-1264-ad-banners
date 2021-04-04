@@ -9,13 +9,13 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
+/***/ "./src/300x250.js":
+/*!************************!*\
+  !*** ./src/300x250.js ***!
+  \************************/
 /***/ (() => {
 
-eval("// import printMe from './print'\n\nfunction component() {\n  const element = document.createElement('div')\n  const button = document.createElement('button')\n\n  element.innerHTML = ['Hello!!!!', 'webpack'].join(' ')\n  button.innerHTML = 'click me and check the console!'\n  // button.onclick = printMe\n\n  element.appendChild(button)\n  return element\n}\n\ndocument.body.appendChild(component())\n\n\n//# sourceURL=webpack://gc-1264-ad-banners/./src/index.js?");
+eval("const el = document.createElement('div')\nel.innerHTML = '300x250'\n\ndocument.body.appendChild(el)\n\n\n//# sourceURL=webpack://gc-1264-ad-banners/./src/300x250.js?");
 
 /***/ })
 
@@ -26,7 +26,7 @@ eval("// import printMe from './print'\n\nfunction component() {\n  const elemen
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
 /******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./src/index.js"]();
+/******/ 	__webpack_modules__["./src/300x250.js"]();
 /******/ 	
 /******/ })()
 ;

@@ -18,15 +18,13 @@
         vertical-align: baseline;
       }
     </style>
-    <% for (var js in htmlWebpackPlugin.files.js) { %>
-      <script type="text/javascript">
-      <%= compilation.assets[htmlWebpackPlugin.files.js[js]].source() %>
-      </script>
-    <% } %>
   </head>
   <body class="loading">
 	<a href="javascript:window.open(window.clickTag)">
-    hello
+    the ad goes here
   </a>
+    <script type="text/javascript">
+      <%= compilation.assets['728x90.bundle.js'].source() %>
+    </script>
   </body>
 </html>
