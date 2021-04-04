@@ -128,6 +128,7 @@ const [
   dropLabel5,
 ] = makeDropLabels(tl, 0.5, 0.5)
 
+// draw in text/drop sketchbook
 tl.set(sketchbook, { y: 22 }, dropLabel1)
 tl.set(text1, { alpha: 1 }, dropLabel1)
 tl.to(text1, { alpha: 0.5, duration: textFadeOutSpeed }, dropLabel1)
@@ -148,6 +149,7 @@ tl.set(sketchbook, { y: 250 }, dropLabel5)
 tl.set(text5, { alpha: 1 }, dropLabel5)
 tl.to(text5, { alpha: 0.5, duration: textFadeOutSpeed }, dropLabel5)
 
+// fade out text
 tl.to([text1, text2, text3, text4, text5], {
   alpha: 0,
   duration: textFadeOutSpeed,

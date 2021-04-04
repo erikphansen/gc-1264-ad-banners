@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 function webpackConfig(adSize) {
   return {
-    mode: 'development',
     entry: `./src/${adSize.width}x${adSize.height}/ad.js`,
     plugins: [
       new HtmlWebpackPlugin({
@@ -15,7 +14,7 @@ function webpackConfig(adSize) {
       }),
     ],
     output: {
-      // makes a new bundle for each entry
+      // make the bundle name based on the input file
       filename: '[name].bundle.js',
       // path of the output file
       path: path.resolve(__dirname, `dist/${adSize.width}x${adSize.height}`),
