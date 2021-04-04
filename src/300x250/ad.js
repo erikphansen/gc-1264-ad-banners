@@ -1,32 +1,32 @@
 import gsap from 'gsap'
 
 import '../sass/300x250.scss'
-import sketchbook1 from './images/sketchbook-1.png'
-import sketchbook2 from './images/sketchbook-2.png'
-import sketchbook3 from './images/sketchbook-3.png'
-import sketchbook4 from './images/sketchbook-4.png'
-import sketchbook5 from './images/sketchbook-5.png'
-import sketchbook6 from './images/sketchbook-6.png'
-import line1 from './images/1-a-new-line.png'
-import line2 from './images/2-of-art-pads.png'
-import line3 from './images/3-for-a-new.png'
-import line4 from './images/4-generation.png'
-import line5 from './images/5-of-artists.png'
-import line6 from './images/6-discover-yourself.png'
-import logo from './images/logo.png'
-import button from './images/button.png'
+import sketchbook1Png from './images/sketchbook-1.png'
+import sketchbook2Png from './images/sketchbook-2.png'
+import sketchbook3Png from './images/sketchbook-3.png'
+import sketchbook4Png from './images/sketchbook-4.png'
+import sketchbook5Png from './images/sketchbook-5.png'
+import sketchbook6Png from './images/sketchbook-6.png'
+import line1Png from './images/1-a-new-line.png'
+import line2Png from './images/2-of-art-pads.png'
+import line3Png from './images/3-for-a-new.png'
+import line4Png from './images/4-generation.png'
+import line5Png from './images/5-of-artists.png'
+import line6Png from './images/6-discover-yourself.png'
+import logoPng from './images/logo.png'
+import buttonPng from './images/button.png'
 
 const ad = document.querySelector('#ad')
-const tl = gsap.timeline()
+const tl = gsap.timeline({ repeat: 1 })
 
 function makeSketchbook() {
   const sketchbookImages = [
-    sketchbook1,
-    sketchbook2,
-    sketchbook3,
-    sketchbook4,
-    sketchbook5,
-    sketchbook6,
+    sketchbook1Png,
+    sketchbook2Png,
+    sketchbook3Png,
+    sketchbook4Png,
+    sketchbook5Png,
+    sketchbook6Png,
   ]
   const book = document.createElement('div')
   book.classList.add('sketchbook')
@@ -49,40 +49,50 @@ gsap.set(sketchbookFrames[0], { alpha: 1 })
 ad.appendChild(sketchbook)
 
 const text1 = new Image()
-text1.src = line1
+text1.src = line1Png
 ad.appendChild(text1)
 const text2 = new Image()
-text2.src = line2
+text2.src = line2Png
 ad.appendChild(text2)
 const text3 = new Image()
-text3.src = line3
+text3.src = line3Png
 ad.appendChild(text3)
 const text4 = new Image()
-text4.src = line4
+text4.src = line4Png
 ad.appendChild(text4)
 const text5 = new Image()
-text5.src = line5
+text5.src = line5Png
 ad.appendChild(text5)
+const text6 = new Image()
+text6.src = line6Png
+ad.appendChild(text6)
+const logo = new Image()
+logo.src = logoPng
+ad.appendChild(logo)
+const button = new Image()
+button.src = buttonPng
+ad.appendChild(button)
 
-const inDur = 0.5
+const slideUpSpeed = 0.75
+const sketchDrawInSpeed = 0.35
 const ease = 'none'
 const fadeOutSpeed = 1
 
 // draw in the sketchbook
-tl.from(sketchbook, { duration: 1, y: 250 })
-tl.to(sketchbookFrames[1], { duration: inDur, alpha: 1, ease })
-tl.to(sketchbookFrames[2], { duration: inDur, alpha: 1, ease })
-tl.to(sketchbookFrames[3], { duration: inDur, alpha: 1, ease })
-tl.to(sketchbookFrames[4], { duration: inDur, alpha: 1, ease })
-tl.to(sketchbookFrames[5], { duration: inDur, alpha: 1, ease })
+tl.from(sketchbook, { duration: slideUpSpeed, y: 250 })
+tl.to(sketchbookFrames[1], { duration: sketchDrawInSpeed, alpha: 1, ease })
+tl.to(sketchbookFrames[2], { duration: sketchDrawInSpeed, alpha: 1, ease })
+tl.to(sketchbookFrames[3], { duration: sketchDrawInSpeed, alpha: 1, ease })
+tl.to(sketchbookFrames[4], { duration: sketchDrawInSpeed, alpha: 1, ease })
+tl.to(sketchbookFrames[5], { duration: sketchDrawInSpeed, alpha: 1, ease })
 
 // now that the sketchbook has drawn in, set up markers for dropping the
 // sketchbook out of view
-tl.addLabel('drop1')
-tl.addLabel('drop2', '>.5')
-tl.addLabel('drop3', '>1')
-tl.addLabel('drop4', '>1.5')
-tl.addLabel('drop5', '>2')
+tl.addLabel('drop1', '>.5')
+tl.addLabel('drop2', '>1')
+tl.addLabel('drop3', '>1.5')
+tl.addLabel('drop4', '>2')
+tl.addLabel('drop5', '>2.5')
 
 tl.set(sketchbook, { y: 22 }, 'drop1')
 tl.set(text1, { alpha: 1 }, 'drop1')
@@ -105,3 +115,7 @@ tl.set(text5, { alpha: 1 }, 'drop5')
 tl.to(text5, { alpha: 0.5, duration: fadeOutSpeed }, 'drop5')
 
 tl.to([text1, text2, text3, text4, text5], { alpha: 0, duration: fadeOutSpeed })
+
+// flash in the logo, final text, and button
+tl.set([logo, text6, button], { alpha: 1 })
+tl.to([logo, text6, button], { alpha: 0 }, '+=3')
