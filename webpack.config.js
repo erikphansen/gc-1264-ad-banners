@@ -17,7 +17,7 @@ const htmlPlugins = sizes.map((adSize) => {
   return new HtmlWebpackPlugin({
     title: `${adSize.width}x${adSize.height}`,
     template: `src/index_${adSize.width}x${adSize.height}.html`,
-    filename: `${adSize.width}x${adSize.height}.html`,
+    filename: `${adSize.width}x${adSize.height}/${adSize.width}x${adSize.height}.html`,
     inject: false,
     cache: false,
   })
@@ -28,7 +28,7 @@ module.exports = {
   // make a new js bundle for each ad size
   entry: sizes.reduce((acc, adSize) => {
     acc[
-      `${adSize.width}x${adSize.height}`
+      `${adSize.width}x${adSize.height}/${adSize.width}x${adSize.height}`
     ] = `./src/${adSize.width}x${adSize.height}.js`
     return acc
   }, {}),
@@ -40,6 +40,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     clean: true,
     publicPath: '',
+    // assetModuleFilename: 'images/[hash][ext][query]',
   },
   module: {
     rules: [
