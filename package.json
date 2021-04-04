@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "build:300x250": "webpack --mode=production --config './size300-250.config.js'",
-    "watch:300x250": "webpack --mode=development --watch --config './size300-250.config.js'"
+    "build:300x600": "webpack --mode=production --config './size300-600.config.js'",
+    "watch:300x250": "webpack --mode=development --watch --config './size300-250.config.js'",
+    "watch:300x600": "webpack --mode=development --watch --config './size300-600.config.js'"
   },
   "keywords": [],
   "author": "",
