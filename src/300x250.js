@@ -1,12 +1,14 @@
 import gsap from 'gsap'
 
 import './sass/300x250.scss'
-import sketchbook1 from './images/300x250/sketchbook-1-300x250.png'
-import sketchbook2 from './images/300x250/sketchbook-2-300x250.png'
-import sketchbook3 from './images/300x250/sketchbook-3-300x250.png'
-import sketchbook4 from './images/300x250/sketchbook-4-300x250.png'
-import sketchbook5 from './images/300x250/sketchbook-5-300x250.png'
-import sketchbook6 from './images/300x250/sketchbook-6-300x250.png'
+import sketchbook1 from './images/300x250/sketchbook-1.png'
+import sketchbook2 from './images/300x250/sketchbook-2.png'
+import sketchbook3 from './images/300x250/sketchbook-3.png'
+import sketchbook4 from './images/300x250/sketchbook-4.png'
+import sketchbook5 from './images/300x250/sketchbook-5.png'
+import sketchbook6 from './images/300x250/sketchbook-6.png'
+
+const ad = document.querySelector('#ad')
 
 const sketchbookImages = [
   sketchbook1,
@@ -31,9 +33,30 @@ function makeSketchbook() {
 }
 
 const [sketchbook, sketchbookFrames] = makeSketchbook()
-
-const ad = document.querySelector('#ad')
-
+sketchbookFrames.forEach((frame) => {
+  gsap.set(frame, { alpha: 0 })
+})
+gsap.set(sketchbookFrames[0], { alpha: 1 })
 ad.appendChild(sketchbook)
 
-gsap.to('div.sketchbook', { duration: 1, y: -250 })
+const tl = gsap.timeline()
+
+const inDur = 0.35
+const outDur = 0.5
+const ease = 'none'
+
+tl.from(sketchbook, { duration: 1, y: 250 })
+tl.to(sketchbookFrames[1], { duration: inDur, alpha: 1, ease })
+tl.to(sketchbookFrames[0], { duration: outDur, alpha: 0, ease })
+
+tl.to(sketchbookFrames[2], { duration: inDur, alpha: 1, ease }, '<')
+tl.to(sketchbookFrames[1], { duration: outDur, alpha: 0, ease })
+
+tl.to(sketchbookFrames[3], { duration: inDur, alpha: 1, ease }, '<')
+tl.to(sketchbookFrames[2], { duration: outDur, alpha: 0, ease })
+
+tl.to(sketchbookFrames[4], { duration: inDur, alpha: 1, ease }, '<')
+tl.to(sketchbookFrames[3], { duration: outDur, alpha: 0, ease })
+
+tl.to(sketchbookFrames[5], { duration: inDur, alpha: 1, ease }, '<')
+tl.to(sketchbookFrames[4], { duration: outDur, alpha: 0, ease })

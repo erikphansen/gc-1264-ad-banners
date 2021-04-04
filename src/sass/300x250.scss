@@ -7,8 +7,9 @@
   height:250px;
 }
 
-.sketchbook {
+div.sketchbook {
   position: absolute;
+  top: 0;
 
   & img {
     position: absolute;

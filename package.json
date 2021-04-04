@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
+    "build:300x250": "webpack --config './size300-250.config.js'",
     "watch": "webpack -w"
   },
   "keywords": [],
