@@ -16,14 +16,18 @@ import line6Png from './images/6-discover-yourself.png'
 import logoPng from './images/logo.png'
 import buttonPng from './images/button.png'
 
-// how many times has it repeated?
-let thisPlay = 0
+import {
+  makeDropLabels,
+  sketchDrawInEase,
+  sketchDrawInSpeed,
+  slideUpSpeed,
+  textFadeOutSpeed,
+} from '../util'
+
 // how many times should it repeat?
 const repeat = 2
-const slideUpSpeed = 0.75
-const sketchDrawInSpeed = 0.5
-const sketchDrawInEase = 'none'
-const textFadeOutSpeed = 0.75
+// how many times has it repeated?
+let thisPlay = 0
 
 const ad = document.querySelector('#ad')
 const tl = gsap.timeline({
@@ -35,20 +39,21 @@ const tl = gsap.timeline({
 
 tl.timeScale(1)
 
-function makeSketchbook() {
-  const sketchbookImages = [
-    sketchbook1Png,
-    sketchbook2Png,
-    sketchbook3Png,
-    sketchbook4Png,
-    sketchbook5Png,
-    sketchbook6Png,
-  ]
+const sketchbookPngs = [
+  sketchbook1Png,
+  sketchbook2Png,
+  sketchbook3Png,
+  sketchbook4Png,
+  sketchbook5Png,
+  sketchbook6Png,
+]
+
+function makeSketchbook(images) {
   const book = document.createElement('div')
   book.classList.add('sketchbook')
   const frames = []
-  sketchbookImages.forEach((frame) => {
-    const img = new Image(300, 250)
+  images.forEach((frame) => {
+    const img = new Image()
     img.src = frame
     frames.push(img)
     book.appendChild(img)
@@ -56,8 +61,7 @@ function makeSketchbook() {
   return [book, frames]
 }
 
-const [sketchbook, sketchbookFrames] = makeSketchbook()
-// gsap.set(sketchbookFrames[0], { alpha: 1 })
+const [sketchbook, sketchbookFrames] = makeSketchbook(sketchbookPngs)
 
 ad.appendChild(sketchbook)
 
@@ -115,33 +119,34 @@ tl.to(sketchbookFrames[5], {
   ease: sketchDrawInEase,
 })
 
-// now that the sketchbook has drawn in, set up markers for dropping the
-// sketchbook out of view
-tl.addLabel('drop1', '>.5')
-tl.addLabel('drop2', '>1')
-tl.addLabel('drop3', '>1.5')
-tl.addLabel('drop4', '>2')
-tl.addLabel('drop5', '>2.5')
+// adds `drop1`, `drop2`, etc. to the timeline
+const [
+  dropLabel1,
+  dropLabel2,
+  dropLabel3,
+  dropLabel4,
+  dropLabel5,
+] = makeDropLabels(tl, 0.5, 0.5)
 
-tl.set(sketchbook, { y: 22 }, 'drop1')
-tl.set(text1, { alpha: 1 }, 'drop1')
-tl.to(text1, { alpha: 0.5, duration: textFadeOutSpeed }, 'drop1')
+tl.set(sketchbook, { y: 22 }, dropLabel1)
+tl.set(text1, { alpha: 1 }, dropLabel1)
+tl.to(text1, { alpha: 0.5, duration: textFadeOutSpeed }, dropLabel1)
 
-tl.set(sketchbook, { y: 72 }, 'drop2')
-tl.set(text2, { alpha: 1 }, 'drop2')
-tl.to(text2, { alpha: 0.5, duration: textFadeOutSpeed }, 'drop2')
+tl.set(sketchbook, { y: 72 }, dropLabel2)
+tl.set(text2, { alpha: 1 }, dropLabel2)
+tl.to(text2, { alpha: 0.5, duration: textFadeOutSpeed }, dropLabel2)
 
-tl.set(sketchbook, { y: 122 }, 'drop3')
-tl.set(text3, { alpha: 1 }, 'drop3')
-tl.to(text3, { alpha: 0.5, duration: textFadeOutSpeed }, 'drop3')
+tl.set(sketchbook, { y: 122 }, dropLabel3)
+tl.set(text3, { alpha: 1 }, dropLabel3)
+tl.to(text3, { alpha: 0.5, duration: textFadeOutSpeed }, dropLabel3)
 
-tl.set(sketchbook, { y: 172 }, 'drop4')
-tl.set(text4, { alpha: 1 }, 'drop4')
-tl.to(text4, { alpha: 0.5, duration: textFadeOutSpeed }, 'drop4')
+tl.set(sketchbook, { y: 172 }, dropLabel4)
+tl.set(text4, { alpha: 1 }, dropLabel4)
+tl.to(text4, { alpha: 0.5, duration: textFadeOutSpeed }, dropLabel4)
 
-tl.set(sketchbook, { y: 250 }, 'drop5')
-tl.set(text5, { alpha: 1 }, 'drop5')
-tl.to(text5, { alpha: 0.5, duration: textFadeOutSpeed }, 'drop5')
+tl.set(sketchbook, { y: 250 }, dropLabel5)
+tl.set(text5, { alpha: 1 }, dropLabel5)
+tl.to(text5, { alpha: 0.5, duration: textFadeOutSpeed }, dropLabel5)
 
 tl.to([text1, text2, text3, text4, text5], {
   alpha: 0,
