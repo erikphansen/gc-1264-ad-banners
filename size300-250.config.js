@@ -7,7 +7,7 @@ const adSize = {
 }
 
 module.exports = {
-  // mode: 'development',
+  mode: 'development',
   entry: './src/300x250.js',
   plugins: [
     new HtmlWebpackPlugin({
@@ -25,7 +25,6 @@ module.exports = {
     path: path.resolve(__dirname, `dist/${adSize.width}x${adSize.height}`),
     clean: true,
     publicPath: '',
-    // assetModuleFilename: 'images/[hash][ext][query]',
   },
   module: {
     rules: [

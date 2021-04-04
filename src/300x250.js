@@ -41,26 +41,18 @@ ad.appendChild(sketchbook)
 
 const tl = gsap.timeline()
 
-const inDur = 0.35
-const outDur = 0.55
+const inDur = 0.5
 const ease = 'none'
 
+// draw in the sketchbook
 tl.from(sketchbook, { duration: 1, y: 250 })
 tl.to(sketchbookFrames[1], { duration: inDur, alpha: 1, ease })
-tl.to(sketchbookFrames[0], { duration: outDur, alpha: 0, ease })
+tl.to(sketchbookFrames[2], { duration: inDur, alpha: 1, ease })
+tl.to(sketchbookFrames[3], { duration: inDur, alpha: 1, ease })
+tl.to(sketchbookFrames[4], { duration: inDur, alpha: 1, ease })
+tl.to(sketchbookFrames[5], { duration: inDur, alpha: 1, ease })
 
-tl.to(sketchbookFrames[2], { duration: inDur, alpha: 1, ease }, '<')
-tl.to(sketchbookFrames[1], { duration: outDur, alpha: 0, ease })
-
-tl.to(sketchbookFrames[3], { duration: inDur, alpha: 1, ease }, '<')
-tl.to(sketchbookFrames[2], { duration: outDur, alpha: 0, ease })
-
-tl.to(sketchbookFrames[4], { duration: inDur, alpha: 1, ease }, '<')
-tl.to(sketchbookFrames[3], { duration: outDur, alpha: 0, ease })
-
-tl.to(sketchbookFrames[5], { duration: inDur, alpha: 1, ease }, '<')
-tl.to(sketchbookFrames[4], { duration: outDur, alpha: 0, ease })
-
+// drop the sketchbook out of the frame
 tl.set(sketchbook, { y: 22 }, '>.5')
 tl.set(sketchbook, { y: 72 }, '>.5')
 tl.set(sketchbook, { y: 122 }, '>.5')
