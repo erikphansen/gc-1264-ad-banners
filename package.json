@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
+    "build": "npm run build:160x600 && npm run build:300x250 && npm run build:300x600 && npm run build:728x90",
     "build:160x600": "webpack --mode=production --config './size160-600.config.js'",
     "build:300x250": "webpack --mode=production --config './size300-250.config.js'",
     "build:300x600": "webpack --mode=production --config './size300-600.config.js'",
