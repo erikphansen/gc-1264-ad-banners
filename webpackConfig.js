@@ -8,7 +8,7 @@ function webpackConfig(adSize) {
       new HtmlWebpackPlugin({
         title: `${adSize.width}x${adSize.height}`,
         template: `src/template_${adSize.width}x${adSize.height}.html`,
-        filename: `${adSize.width}x${adSize.height}.html`,
+        filename: `index.html`,
         inject: false,
         cache: false,
       }),
